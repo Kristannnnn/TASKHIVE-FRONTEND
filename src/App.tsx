@@ -1,17 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-function Home() {
-  return (
-    <div className="flex ">
-      <div> this is a container</div>
-    </div>
-  );
-}
+import LogIn from "../src/pages/LogIn";
+import LandingPage from "../src/pages/LandingPage";
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      Component: Home,
+      element:<LandingPage/>
     },
+    {
+      path:"/login",
+      element: <LogIn/>
+    }
   ]);
   return (
     <div>
