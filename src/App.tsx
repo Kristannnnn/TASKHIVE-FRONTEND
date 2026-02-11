@@ -4,6 +4,7 @@ function Home() {
     <div className="flex ">
       <div> this is a container</div>
       {/* JAJAJAJ */}
+      {/* added a new comment */}
     </div>
   );
 }
