@@ -1,6 +1,14 @@
 @import "tailwindcss";
+@import "@fontsource/irish-grover";
 
 @theme {
   --color-primary: #eaeaea;
   --color-secondary: #740303;
+  --color-container: #d9d9d9;
+
+  --font-cursive: "Irish Grover, cursive";
+}
+:root {
+  font-family: "Irish Groover, cursive";
+  background-color: #eaeaea;
 }
