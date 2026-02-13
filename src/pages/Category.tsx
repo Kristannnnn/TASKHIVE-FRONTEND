@@ -2,10 +2,11 @@ import AppHeader from "@/components/AppHeader";
 import LandingPageButtonNavigation from "@/components/Buttons";
 import PrimaryTextLabel from "@/components/PrimaryTextLabel";
 import { useState } from "react";
-import { FaTasks, FaUserCircle } from "react-icons/fa";
-import { IoIosArchive } from "react-icons/io";
-import { IoLogOut } from "react-icons/io5";
-export default function Dashboard() {
+import { CiSquarePlus } from "react-icons/ci";
+import { FaChalkboardUser } from "react-icons/fa6";
+import { IoTodayOutline } from "react-icons/io5";
+import { MdOutlineWorkOutline } from "react-icons/md";
+export default function Category() {
   const [username] = useState("");
   const storedUsername = username || localStorage.getItem("username") || "User";
   return (
@@ -16,24 +17,24 @@ export default function Dashboard() {
       </div>
       <div className="flex justify-center items-center flex-col pt-10 gap-20">
         <LandingPageButtonNavigation
-          title="TASK"
-          to="/Category"
-          icon={<FaTasks />}
+          title="PERSONAL"
+          to="/task"
+          icon={<FaChalkboardUser />}
         />
         <LandingPageButtonNavigation
-          title="ARCHIVE"
+          title="DAILY"
           to="/login"
-          icon={<IoIosArchive />}
+          icon={<IoTodayOutline />}
         />
         <LandingPageButtonNavigation
-          title="PROFILE"
+          title="WORK"
           to="/login"
-          icon={<FaUserCircle />}
+          icon={<MdOutlineWorkOutline />}
         />
         <LandingPageButtonNavigation
-          title="LOG OUT"
+          title="OTHER"
           to="/login"
-          icon={<IoLogOut />}
+          icon={<CiSquarePlus />}
         />
       </div>
     </div>

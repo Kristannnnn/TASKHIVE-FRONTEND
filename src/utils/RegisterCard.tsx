@@ -1,16 +1,42 @@
 import InputField from "@/components/InputField";
-import PrimaryButton from "@/components/PrimaryButton";
 import PrimaryTextLabel from "@/components/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import axios from "axios";
 import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { MdMail, MdOutlineKey } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterCard() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleRegister = async () => {
+    try {
+      if (!username || !email || !newPassword) {
+        setError("All fields are required");
+        return;
+      }
+      if (newPassword !== oldPassword) {
+        setError("Passwords do not match");
+        return;
+      }
+      const response = await axios.post("/api/users", {
+        username,
+        email,
+        password: newPassword,
+      });
+      console.log("Registration successful:", response.data);
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      setError("Registration failed. Please try again.");
+    }
+  };
   return (
     <div className="border-2 mt-16 rounded-3xl p-8 mx-[10%] bg-container flex flex-col items-center justify-center">
       <PrimaryTextLabel content="Let’s Get You Started!" />
@@ -54,7 +80,19 @@ export default function RegisterCard() {
           onChange={setNewPassword}
         />
       </div>
-      <PrimaryButton title="Register" to="/login" />
+      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+      <button
+        onClick={handleRegister}
+        className="border-2 rounded-[8px] mt-[6%] py-[5px] px-[70px] bg-secondary text-white hover:cursor-pointer"
+      >
+        Register
+      </button>
+      <p className="text-sm mt-4">
+        Already have an account?{" "}
+        <a href="/login" className="text-secondary font-bold">
+          Login
+        </a>
+      </p>
     </div>
   );
 }

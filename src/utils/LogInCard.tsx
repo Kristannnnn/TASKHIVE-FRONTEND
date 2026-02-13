@@ -2,6 +2,7 @@ import InputField from "@/components/InputField";
 import PrimaryButton from "@/components/PrimaryButton";
 import PrimaryTextLabel from "@/components/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoMdCreate } from "react-icons/io";
@@ -18,6 +19,23 @@ export default function LogInCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post("/api/login", {
+        email,
+        password,
+      });
+      setMessage(res.data.message);
+      console.log("user data: ", res.data.user);
+      alert("Logged In");
+      navigate("/dashboard");
+    } catch (err) {
+      const error = err as AxiosError<{ message?: string }>;
+      setMessage(error.response?.data?.message || "Login failed");
+    }
+  };
 
   return (
     <div className="border-2 mt-16 rounded-3xl p-8 mx-[10%] bg-container flex flex-col items-center justify-center">
@@ -64,7 +82,11 @@ export default function LogInCard() {
         </p>
       </div>
 
-      <PrimaryButton title="Log In" to="/dashboard" />
+      <PrimaryButton title="Log In" onClick={handleLogin} />
+
+      {message && (
+        <p className="text-center text-sm mt-4 text-secondary">{message}</p>
+      )}
 
       <div className="mt-4 w-full flex justify-center items-center gap-4">
         <button

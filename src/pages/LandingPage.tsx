@@ -8,7 +8,7 @@ export default function LandingPage() {
         <img src={logo} />
       </div>
       <div>
-        <LandingPageButtonNavigation title="Get Started" to="/login" />{" "}
+        <LandingPageButtonNavigation title="Get Started" to="/login" />
       </div>
     </div>
   );

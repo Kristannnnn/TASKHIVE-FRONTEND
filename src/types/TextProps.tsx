@@ -1,6 +1,7 @@
 export interface PrimaryTextLabelProps {
   content: string;
   className?: string;
+  username?: string;
 }
 
 export interface SecondaryTextLabelProps {
@@ -16,5 +17,5 @@ export interface InputFieldProps {
 }
 export interface PrimaryButtonProps {
   title: string;
-  to: string;
+  onClick?: () => void;
 }

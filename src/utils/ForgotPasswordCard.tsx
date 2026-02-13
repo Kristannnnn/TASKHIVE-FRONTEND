@@ -16,7 +16,10 @@ export default function ForgotPasswordCard() {
         <MdMail className="absolute left-3 top-1/2 translate-y-1" />
         <InputField type="email" placeholder="enter email" />
       </div>
-      <PrimaryButton title="Reset Password" to="/login" />
+      <PrimaryButton
+        title="Reset Password"
+        onClick={() => alert("Reset link sent!")}
+      />
     </div>
   );
 }

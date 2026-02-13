@@ -5,10 +5,11 @@
   --color-primary: #eaeaea;
   --color-secondary: #740303;
   --color-container: #d9d9d9;
+  --color-mainbutton: #696969;
 
   --font-cursive: "Irish Grover, cursive";
 }
 :root {
-  font-family: "Irish Groover, cursive";
+  font-family: "Irish Grover, cursive";
   background-color: #eaeaea;
 }

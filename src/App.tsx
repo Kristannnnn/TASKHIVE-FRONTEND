@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import LandingPage from "../src/pages/LandingPage";
 import LogIn from "../src/pages/LogIn";
+import Category from "./pages/Category";
 import Dashboard from "./pages/Dashboard";
-import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
+import Register from "./pages/Register";
+import Task from "./pages/Task";
 function App() {
   const router = createBrowserRouter([
     {
@@ -19,12 +21,20 @@ function App() {
       element: <Register />,
     },
     {
-      path: "dashboard",
+      path: "/dashboard",
       element: <Dashboard />,
     },
     {
-      path: "forgotpassword",
+      path: "/forgotpassword",
       element: <ForgotPassword />,
+    },
+    {
+      path: "/Category",
+      element: <Category />,
+    },
+    {
+      path: "/task",
+      element: <Task />,
     },
   ]);
   return (
