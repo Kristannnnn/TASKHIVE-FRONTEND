@@ -33,8 +33,11 @@ export default function LogInCard() {
       if (data.token) {
         login(data.token, data.user);
       }
-      console.log("Token: ", data);
+
       alert("Logged In");
+
+      console.log(useAuthStore.getState().token);
+
       navigate("/dashboard");
     } catch (err) {
       const error = err as AxiosError<{ message?: string }>;

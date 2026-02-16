@@ -4,8 +4,8 @@ import LogIn from "../src/pages/LogIn";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import PublicRoute from "./components/PublicRoute";
 import Category from "./pages/Category";
+import CreateTask from "./pages/createTask";
 import Dashboard from "./pages/Dashboard";
-import ForgotPassword from "./pages/ForgotPassword";
 import Register from "./pages/Register";
 import Task from "./pages/Task";
 function App() {
@@ -16,11 +16,7 @@ function App() {
     },
     {
       path: "/login",
-      element: (
-        <PublicRoute>
-          <LogIn />
-        </PublicRoute>
-      ),
+      element: <LogIn />,
     },
     {
       path: "/register",
@@ -39,16 +35,16 @@ function App() {
       ),
     },
     {
-      path: "/forgotpassword",
-      element: <ForgotPassword />,
+      path: "/task/:category",
+      element: <Task />,
     },
     {
-      path: "/Category",
+      path: "/category",
       element: <Category />,
     },
     {
-      path: "/task",
-      element: <Task />,
+      path: "/task/:category/create",
+      element: <CreateTask />,
     },
   ]);
   return (

@@ -14,6 +14,16 @@ export interface InputFieldProps {
   type?: string;
   value?: string | number;
   onChange?: (value: string) => void;
+  defaultChecked?: boolean;
+}
+export interface TaskFieldProps {
+  placeholder?: string;
+  type?: string;
+  value: string;
+  checked: boolean;
+  onChange?: (value: string) => void;
+  onToggle: () => void;
+  onDelete?: () => void;
 }
 export interface PrimaryButtonProps {
   title: string;
