@@ -2,6 +2,7 @@ import InputField from "@/components/InputField";
 import PrimaryButton from "@/components/PrimaryButton";
 import PrimaryTextLabel from "@/components/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import { useAuthStore } from "@/stores/authStore";
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -20,15 +21,19 @@ export default function LogInCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const login = useAuthStore((state) => state.login);
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("/api/login", {
+      const { data } = await axios.post("/api/login", {
         email,
         password,
       });
-      setMessage(res.data.message);
-      console.log("user data: ", res.data.user);
+
+      if (data.token) {
+        login(data.token, data.user);
+      }
+      console.log("Token: ", data);
       alert("Logged In");
       navigate("/dashboard");
     } catch (err) {

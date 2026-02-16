@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import LandingPage from "../src/pages/LandingPage";
 import LogIn from "../src/pages/LogIn";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import PublicRoute from "./components/PublicRoute";
 import Category from "./pages/Category";
 import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -14,15 +16,27 @@ function App() {
     },
     {
       path: "/login",
-      element: <LogIn />,
+      element: (
+        <PublicRoute>
+          <LogIn />
+        </PublicRoute>
+      ),
     },
     {
       path: "/register",
-      element: <Register />,
+      element: (
+        <PublicRoute>
+          <Register />
+        </PublicRoute>
+      ),
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: (
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "/forgotpassword",
