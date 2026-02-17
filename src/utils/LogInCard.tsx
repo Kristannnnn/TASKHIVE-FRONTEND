@@ -23,6 +23,7 @@ export default function LogInCard() {
   const [message, setMessage] = useState("");
   const login = useAuthStore((state) => state.login);
 
+  
   const handleLogin = async () => {
     try {
       const { data } = await axios.post("/api/login", {
@@ -98,14 +99,14 @@ export default function LogInCard() {
 
       <div className="mt-4 w-full flex justify-center items-center gap-4">
         <button
-          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white hover:shadow-md transition-all flex-1 max-w-[200px] min-w-[120px]"
+          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white hover:shadow-md transition-all flex-1 max-w-50 min-w-30"
           onClick={() => navigate("")}
         >
           continue with <FcGoogle className="text-lg" />
         </button>
 
         <button
-          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white hover:shadow-md transition-all flex-1 max-w-[200px] min-w-[120px]"
+          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white hover:shadow-md transition-all flex-1 max-w-50 min-w-30"
           onClick={() => navigate("/register")}
         >
           create account <IoMdCreate className="text-lg" />

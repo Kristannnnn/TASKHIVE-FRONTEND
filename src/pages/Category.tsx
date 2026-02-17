@@ -1,6 +1,7 @@
 import AppHeader from "@/components/AppHeader";
 import LandingPageButtonNavigation from "@/components/Buttons";
 import PrimaryTextLabel from "@/components/PrimaryTextLabel";
+import SecondaryTextLabel from "@/components/SecondaryTextLabel";
 import { CiSquarePlus } from "react-icons/ci";
 import { FaChalkboardUser } from "react-icons/fa6";
 import { IoTodayOutline } from "react-icons/io5";
@@ -12,6 +13,7 @@ export default function Category() {
       <AppHeader headerText="“From chaos to clarity, effortlessly. “" />
       <div>
         <PrimaryTextLabel content={`Hello there ${storedUsername}`} />
+        <SecondaryTextLabel content="Organize, prioritize, conquer. Let’s get started!" />
       </div>
       <div className="flex justify-center items-center flex-col pt-10 gap-20">
         <LandingPageButtonNavigation

@@ -20,9 +20,9 @@ export interface TaskFieldProps {
   placeholder?: string;
   type?: string;
   value: string;
-  checked: boolean;
-  onChange?: (value: string) => void;
-  onToggle: () => void;
+  checked?: boolean;
+  onToggle?: () => void;
+  onEdit?: () => void;
   onDelete?: () => void;
 }
 export interface PrimaryButtonProps {

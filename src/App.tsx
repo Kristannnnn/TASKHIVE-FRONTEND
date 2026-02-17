@@ -1,12 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LandingPage from "../src/pages/LandingPage";
-import LogIn from "../src/pages/LogIn";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import PublicRoute from "./components/PublicRoute";
 import Category from "./pages/Category";
-import CreateTask from "./pages/createTask";
 import Dashboard from "./pages/Dashboard";
+import ForgotPassword from "./pages/ForgotPassword";
+import LogIn from "./pages/LogIn";
 import Register from "./pages/Register";
+import ResetPassword from "./pages/ResetPasswordPage";
 import Task from "./pages/Task";
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +19,15 @@ function App() {
     },
     {
       path: "/login",
-      element: <LogIn />,
+      element: (
+        <PublicRoute>
+          <LogIn />
+        </PublicRoute>
+      ),
+    },
+    {
+      path: "/forgotpassword",
+      element: <ForgotPassword />,
     },
     {
       path: "/register",
@@ -36,20 +47,21 @@ function App() {
     },
     {
       path: "/task/:category",
-      element: <Task />,
+      Component: Task,
     },
     {
       path: "/category",
       element: <Category />,
     },
     {
-      path: "/task/:category/create",
-      element: <CreateTask />,
+      path: "/changepassword",
+      element: <ResetPassword />,
     },
   ]);
   return (
     <div>
       <RouterProvider router={router} />
+      <ToastContainer position="top-center" autoClose={5000} />
     </div>
   );
 }
