@@ -1,4 +1,4 @@
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
+import PrimaryTextLabel from "../global/inputs/PrimaryTextLabel";
 import { useParams } from "react-router-dom";
 
 export default function TaskDisplayCard() {

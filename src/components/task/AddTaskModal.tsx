@@ -58,7 +58,7 @@ const AddTaskModal = ({
         )}
 
         {isDelete && (
-          <p className="text-center text-black mb-4">
+          <p className="text-center text-black mb-4 font-cursive">
             Are you sure you want to delete this task?
           </p>
         )}

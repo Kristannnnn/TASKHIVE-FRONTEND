@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png";
+import logo from "@/assets/logo.png";
 import SecondaryTextLabel from "./SecondaryTextLabel";
 interface HeaderProps {
   headerText: string;

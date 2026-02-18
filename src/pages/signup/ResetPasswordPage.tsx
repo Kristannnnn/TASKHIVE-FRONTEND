@@ -1,6 +1,6 @@
-import ChangePasswordCard from "@/utils/ChangePasswordCard";
+import logo from "@/assets/logo.png";
+import ChangePasswordCard from "@/components/changepassword/ChangePasswordCard";
 import { useSearchParams } from "react-router-dom";
-import logo from "../assets/logo.png";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();

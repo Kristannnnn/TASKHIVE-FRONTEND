@@ -21,7 +21,7 @@ const TaskField: React.FC<TaskFieldProps> = ({
       />
 
       <input
-        className={`w-full pl-10 pr-20 py-2 border rounded-2xl focus:outline-none
+        className={`w-full pl-10 pr-20 py-2 border rounded-2xl font-cursive focus:outline-none
         ${checked ? "line-through text-black" : ""}`}
         placeholder={placeholder}
         type={type}

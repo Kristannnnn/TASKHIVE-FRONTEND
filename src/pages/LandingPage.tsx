@@ -1,5 +1,5 @@
-import LandingPageButtonNavigation from "@/components/Buttons";
-import logo from "../assets/logo.png";
+import logo from "@/assets/logo.png";
+import LandingPageButtonNavigation from "@/components/global/buttons/Buttons";
 
 export default function LandingPage() {
   return (

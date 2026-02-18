@@ -2,15 +2,18 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LandingPage from "../src/pages/LandingPage";
-import ProtectedRoute from "./components/ProtectedRoutes";
-import PublicRoute from "./components/PublicRoute";
-import Category from "./pages/Category";
-import Dashboard from "./pages/Dashboard";
-import ForgotPassword from "./pages/ForgotPassword";
-import LogIn from "./pages/LogIn";
-import Register from "./pages/Register";
-import ResetPassword from "./pages/ResetPasswordPage";
-import Task from "./pages/Task";
+import ProtectedRoute from "./components/global/routes/ProtectedRoutes";
+import PublicRoute from "./components/global/routes/PublicRoute";
+import Archive from "./pages/dashboard/archive/Archive";
+import ArchiveCategory from "./pages/dashboard/archive/ArchiveCategory";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Category from "./pages/dashboard/task/Category";
+import Task from "./pages/dashboard/task/Task";
+import LogIn from "./pages/login/LogIn";
+import ForgotPassword from "./pages/signup/ForgotPassword";
+import Register from "./pages/signup/Register";
+import ResetPassword from "./pages/signup/ResetPasswordPage";
+import TermsAndCondition from "./pages/TermsAndCondition";
 function App() {
   const router = createBrowserRouter([
     {
@@ -47,15 +50,44 @@ function App() {
     },
     {
       path: "/task/:category",
-      Component: Task,
+      element: (
+        <ProtectedRoute>
+          <Task />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "/category",
-      element: <Category />,
+      element: (
+        <ProtectedRoute>
+          <Category />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/archive/:category",
+      element: (
+        <ProtectedRoute>
+          <Archive />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/archivecategory",
+      element: (
+        <ProtectedRoute>
+          {" "}
+          <ArchiveCategory />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "/changepassword",
-      element: <ResetPassword />,
+      element: (
+        <PublicRoute>
+          <ResetPassword />,
+        </PublicRoute>
+      ),
     },
   ]);
   return (

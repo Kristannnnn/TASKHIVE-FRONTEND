@@ -4,7 +4,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="border-2 rounded-[8px] mt-[6%] py-[5px] px-[70px] bg-secondary text-white hover:cursor-pointer"
+      className="border-2 rounded-lg mt-[6%] py-1.25 px-17.5 bg-secondary text-white font-cursive"
     >
       {title}
     </button>

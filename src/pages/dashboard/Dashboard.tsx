@@ -1,7 +1,7 @@
-import AppHeader from "@/components/AppHeader";
-import LandingPageButtonNavigation from "@/components/Buttons";
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
-import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import LandingPageButtonNavigation from "@/components/global/buttons/Buttons";
+import AppHeader from "@/components/global/inputs/AppHeader";
+import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
+import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
 import { useAuthStore } from "@/stores/authStore";
 import { FaTasks, FaUserCircle } from "react-icons/fa";
 import { IoIosArchive } from "react-icons/io";
@@ -35,7 +35,7 @@ export default function Dashboard() {
         />
         <LandingPageButtonNavigation
           title="ARCHIVE"
-          to="/login"
+          to="/archivecategory"
           icon={<IoIosArchive />}
         />
         <LandingPageButtonNavigation

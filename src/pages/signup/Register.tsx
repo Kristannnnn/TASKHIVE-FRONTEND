@@ -1,5 +1,5 @@
-import RegisterCard from "@/utils/RegisterCard";
-import logo from "../assets/logo.png";
+import logo from "@/assets/logo.png";
+import RegisterCard from "@/components/register/RegisterCard";
 
 export default function Register() {
   return (

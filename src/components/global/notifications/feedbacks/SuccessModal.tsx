@@ -44,15 +44,15 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
         </div>
 
         {/* Title */}
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-xl font-semibold mb-2 font-cursive">{title}</h2>
 
         {/* Message */}
-        <p className="text-gray-700 mb-6">{message}</p>
+        <p className="text-gray-700 mb-6 font-cursive">{message}</p>
 
         {/* Button */}
         <button
           onClick={onClose}
-          className="bg-secondary text-white px-6 py-2 rounded-md hover:bg-red-800 transition"
+          className="bg-secondary  font-cursive text-white px-6 py-2 rounded-md hover:bg-red-800 transition"
         >
           {buttonText}
         </button>

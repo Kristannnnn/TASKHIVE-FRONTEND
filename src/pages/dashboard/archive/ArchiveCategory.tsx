@@ -1,39 +1,41 @@
-import AppHeader from "@/components/AppHeader";
-import LandingPageButtonNavigation from "@/components/Buttons";
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
-import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import LandingPageButtonNavigation from "@/components/global/buttons/Buttons";
+import AppHeader from "@/components/global/inputs/AppHeader";
+import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
+import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
+import { useAuthStore } from "@/stores/authStore";
 import { CiSquarePlus } from "react-icons/ci";
 import { FaChalkboardUser } from "react-icons/fa6";
 import { IoTodayOutline } from "react-icons/io5";
 import { MdOutlineWorkOutline } from "react-icons/md";
-export default function Category() {
-  const storedUsername = localStorage.getItem("username");
+export default function ArchiveCategory() {
+  const user = useAuthStore((state) => state.user);
+
   return (
     <div className="bg-primary flex-col justify-center mb-3.5">
       <AppHeader headerText="“From chaos to clarity, effortlessly. “" />
       <div>
-        <PrimaryTextLabel content={`Hello there ${storedUsername}`} />
+        <PrimaryTextLabel content={`Hello there ${user?.username}`} />
         <SecondaryTextLabel content="Organize, prioritize, conquer. Let’s get started!" />
       </div>
       <div className="flex justify-center items-center flex-col pt-10 gap-20">
         <LandingPageButtonNavigation
           title="PERSONAL"
-          to="/task/personal"
+          to="/archive/personal"
           icon={<FaChalkboardUser />}
         />
         <LandingPageButtonNavigation
           title="DAILY"
-          to="/task/daily"
+          to="/archive/daily"
           icon={<IoTodayOutline />}
         />
         <LandingPageButtonNavigation
           title="WORK"
-          to="/task/work"
+          to="/archive/work"
           icon={<MdOutlineWorkOutline />}
         />
         <LandingPageButtonNavigation
           title="OTHER"
-          to="/task/other"
+          to="/archive/other"
           icon={<CiSquarePlus />}
         />
       </div>

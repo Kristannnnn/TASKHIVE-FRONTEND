@@ -1,9 +1,9 @@
-import AddTaskModal from "@/components/AddTaskModal";
-import AppHeader from "@/components/AppHeader";
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
-import SecondaryTextLabel from "@/components/SecondaryTextLabel";
-import SuccessModal from "@/components/SuccessModal";
-import TaskField from "@/components/TaskField";
+import AppHeader from "@/components/global/inputs/AppHeader";
+import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
+import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
+import TaskField from "@/components/global/inputs/TaskField";
+import SuccessModal from "@/components/global/notifications/feedbacks/SuccessModal";
+import AddTaskModal from "@/components/task/AddTaskModal";
 import { useAuthStore } from "@/stores/authStore";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -23,13 +23,14 @@ type ModalMode = "add" | "edit" | "delete";
 const TaskPage = () => {
   const { category } = useParams<{ category: string }>();
   const token = useAuthStore((state) => state.token);
+  const user = useAuthStore((state) => state.user);
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<ModalMode>("add");
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
-  const storedUsername = localStorage.getItem("username");
+
   useEffect(() => {
     if (!category) return;
 
@@ -154,8 +155,11 @@ const TaskPage = () => {
   return (
     <div className="bg-primary flex-col justify-center mb-3.5">
       <AppHeader headerText="“From chaos to clarity, effortlessly. “" />
-      <PrimaryTextLabel content={`Hello there ${storedUsername} `} />
-      <SecondaryTextLabel content="Here’s your hive of tasks—time to get busy." />
+      <PrimaryTextLabel content={`Hello there ${user?.username} `} />
+      <SecondaryTextLabel
+        className="text-center"
+        content="Here’s your hive of tasks—time to get busy."
+      />
       <div className="border-2 mt-16 rounded-3xl p-8 mx-[10%] h-150 bg-container flex flex-col relative">
         <div className="flex items-center justify-between w-full mb-6">
           <PrimaryTextLabel content={`${category?.toUpperCase()} TASK`} />
@@ -168,7 +172,7 @@ const TaskPage = () => {
         </div>
         <div className="w-full overflow-y-auto">
           {!tasks.length && (
-            <p className="text-center mt-[50%] text-black">
+            <p className="text-center mt-[50%] text-black font-cursive">
               Nothing here yet. Your future productivity starts with one click.
             </p>
           )}

@@ -1,7 +1,7 @@
-import InputField from "@/components/InputField";
-import PrimaryButton from "@/components/PrimaryButton";
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
-import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import PrimaryButton from "@/components/global/buttons/PrimaryButton";
+import InputField from "@/components/global/inputs/InputField";
+import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
+import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
 import axios from "axios";
 import { useState } from "react";
 import { MdMail } from "react-icons/md";

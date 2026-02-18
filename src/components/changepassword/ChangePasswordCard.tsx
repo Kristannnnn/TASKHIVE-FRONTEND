@@ -1,7 +1,7 @@
-import InputField from "@/components/InputField";
-import PrimaryButton from "@/components/PrimaryButton";
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
-import SecondaryTextLabel from "@/components/SecondaryTextLabel";
+import PrimaryButton from "@/components/global/buttons/PrimaryButton";
+import InputField from "@/components/global/inputs/InputField";
+import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
+import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
 import axios, { isAxiosError } from "axios";
 import { useState } from "react";
 import { MdOutlineKey, MdVisibility, MdVisibilityOff } from "react-icons/md";
@@ -55,7 +55,7 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
       <PrimaryTextLabel content="Change Password" />
       <SecondaryTextLabel
         className="text-center"
-        content="Enter your new password below."
+        content="Please enter a new password for your account."
       />
 
       {/* New Password */}
@@ -68,7 +68,7 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
           onChange={setNewPassword}
         />
         {showPassword ? (
-          <MdVisibility
+          <MdVisibility aria-label="showPasswordOn"
             className="absolute right-3 top-12 -translate-y-1/2 cursor-pointer"
             onClick={() => setShowPassword(false)}
           />

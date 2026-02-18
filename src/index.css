@@ -7,10 +7,9 @@
   --color-container: #d9d9d9;
   --color-mainbutton: #696969;
 
-  --font-cursive: "Irish Grover, cursive";
+  --font-cursive: "Irish Grover", cursive;
 }
 :root {
-  font-family: "Irish Grover, cursive";
   background-color: #eaeaea;
 }
 @keyframes pop {

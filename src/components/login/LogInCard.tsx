@@ -1,7 +1,3 @@
-import InputField from "@/components/InputField";
-import PrimaryButton from "@/components/PrimaryButton";
-import PrimaryTextLabel from "@/components/PrimaryTextLabel";
-import SecondaryTextLabel from "@/components/SecondaryTextLabel";
 import { useAuthStore } from "@/stores/authStore";
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
@@ -14,6 +10,10 @@ import {
   MdVisibilityOff,
 } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import PrimaryButton from "../global/buttons/PrimaryButton";
+import InputField from "../global/inputs/InputField";
+import PrimaryTextLabel from "../global/inputs/PrimaryTextLabel";
+import SecondaryTextLabel from "../global/inputs/SecondaryTextLabel";
 
 export default function LogInCard() {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ export default function LogInCard() {
   const [message, setMessage] = useState("");
   const login = useAuthStore((state) => state.login);
 
-  
   const handleLogin = async () => {
     try {
       const { data } = await axios.post("/api/login", {
@@ -84,7 +83,7 @@ export default function LogInCard() {
           />
         )}
         <p
-          className="text-secondary text-center mr-2.5 underline mt-1 cursor-pointer"
+          className="text-secondary pl-31 mr-2.5 underline mt-1 cursor-pointer font-cursive"
           onClick={() => navigate("/forgotpassword")}
         >
           forgot password
@@ -99,14 +98,14 @@ export default function LogInCard() {
 
       <div className="mt-4 w-full flex justify-center items-center gap-4">
         <button
-          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white hover:shadow-md transition-all flex-1 max-w-50 min-w-30"
+          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white font-cursive"
           onClick={() => navigate("")}
         >
           continue with <FcGoogle className="text-lg" />
         </button>
 
         <button
-          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white hover:shadow-md transition-all flex-1 max-w-50 min-w-30"
+          className="flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-3xl bg-white font-cursive"
           onClick={() => navigate("/register")}
         >
           create account <IoMdCreate className="text-lg" />

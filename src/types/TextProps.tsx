@@ -28,4 +28,5 @@ export interface TaskFieldProps {
 export interface PrimaryButtonProps {
   title: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
