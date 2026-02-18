@@ -13,7 +13,6 @@ import LogIn from "./pages/login/LogIn";
 import ForgotPassword from "./pages/signup/ForgotPassword";
 import Register from "./pages/signup/Register";
 import ResetPassword from "./pages/signup/ResetPasswordPage";
-import TermsAndCondition from "./pages/TermsAndCondition";
 function App() {
   const router = createBrowserRouter([
     {

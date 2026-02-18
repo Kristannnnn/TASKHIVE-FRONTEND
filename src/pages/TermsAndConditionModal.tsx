@@ -117,31 +117,29 @@ export default function TermsAndCondition() {
             />
           </div>
         </div>
-             <div className="mt-6 flex flex-col items-center gap-4">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={accepted}
-            onChange={() => setAccepted(!accepted)}
-            className="w-4 h-4"
-          />
-          <span>I agree to the Terms and Conditions</span>
-        </label>
+        <div className="mt-6 flex flex-col items-center gap-4">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={accepted}
+              onChange={() => setAccepted(!accepted)}
+              className="w-4 h-4"
+            />
+            <span>I agree to the Terms and Conditions</span>
+          </label>
 
-        <button
-          disabled={!accepted}
-          className={`px-8 py-2 rounded-xl text-white transition-all duration-200 ${
-            accepted
-              ? "bg-mainbutton hover:opacity-90"
-              : "bg-gray-400 cursor-not-allowed"
-          }`}
-        >
-          Accept
-        </button>
+          <button
+            disabled={!accepted}
+            className={`px-8 py-2 rounded-xl text-white transition-all duration-200 ${
+              accepted
+                ? "bg-mainbutton hover:opacity-90"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
+          >
+            Accept
+          </button>
+        </div>
       </div>
-      </div>
-
-
     </div>
   );
 }
