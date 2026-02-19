@@ -3,7 +3,7 @@ import AppHeader from "@/components/global/inputs/AppHeader";
 import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
 import NotifOnlyModal from "@/components/global/notifications/feedbacks/NotifOnlyModal";
-import SkeletonLoader from "@/components/global/skeletons/SkeletonLoader";
+import SkeletonLoader from "@/components/global/skeletons/DashboardSkeleton";
 import { useAuthStore } from "@/stores/authStore";
 import { useEffect, useState } from "react";
 import { FaTasks, FaUserCircle } from "react-icons/fa";
@@ -59,7 +59,7 @@ export default function Dashboard() {
         />
         <LandingPageButtonNavigation
           title="PROFILE"
-          to="/login"
+          to="/comingsoon"
           icon={<FaUserCircle />}
         />
         <LandingPageButtonNavigation

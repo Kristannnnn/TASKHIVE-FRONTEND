@@ -15,9 +15,10 @@ export default function ForgotPasswordCard() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  //process for email reset link
   const handleEmailChange = (value: string) => {
     setEmail(value);
-    if (error) setError(""); // Clear error as user types
+    if (error) setError("");
   };
 
   const handleForgotPass = async () => {

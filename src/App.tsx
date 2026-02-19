@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LandingPage from "../src/pages/LandingPage";
 import ProtectedRoute from "./components/global/routes/ProtectedRoutes";
 import PublicRoute from "./components/global/routes/PublicRoute";
+import ComingSoon from "./pages/ComingSoon";
 import Archive from "./pages/dashboard/archive/Archive";
 import ArchiveCategory from "./pages/dashboard/archive/ArchiveCategory";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -86,6 +87,14 @@ function App() {
         <PublicRoute>
           <ResetPassword />,
         </PublicRoute>
+      ),
+    },
+    {
+      path: "/comingsoon",
+      element: (
+        <ProtectedRoute>
+          <ComingSoon />,
+        </ProtectedRoute>
       ),
     },
   ]);

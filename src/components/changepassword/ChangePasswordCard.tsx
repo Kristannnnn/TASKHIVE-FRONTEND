@@ -23,6 +23,8 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
   const [error, setError] = useState("");
 
   const [isSuccessOpen, setSuccessOpen] = useState(false);
+
+  //process for changing password
   const handleChangePassword = async () => {
     setError("");
 
@@ -104,6 +106,8 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
           />
         )}
       </div>
+
+      {/*shows notification when successfully changed password*/}
       <div>
         <NotifOnlyModal
           isOpen={isSuccessOpen}
@@ -119,7 +123,7 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
       </div>
 
       {error && <p className="text-red-600 text-sm mt-3">{error}</p>}
-
+      {/* Button for update password*/}
       <PrimaryButton title="Update Password" onClick={handleChangePassword} />
     </div>
   );

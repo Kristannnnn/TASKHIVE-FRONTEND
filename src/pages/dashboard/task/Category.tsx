@@ -2,7 +2,7 @@ import LandingPageButtonNavigation from "@/components/global/buttons/Buttons";
 import AppHeader from "@/components/global/inputs/AppHeader";
 import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
-import SkeletonLoader from "@/components/global/skeletons/SkeletonLoader";
+import SkeletonLoader from "@/components/global/skeletons/DashboardSkeleton";
 import { useAuthStore } from "@/stores/authStore";
 import { useEffect, useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";

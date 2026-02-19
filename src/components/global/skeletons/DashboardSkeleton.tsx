@@ -1,4 +1,5 @@
-export default function SkeletonLoader() {
+export default function DashboardSkeleton() {
+  //skeleton loading for dashboards
   return (
     <div className="bg-primary flex-col justify-center mb-3.5">
       <div className="h-20 bg-gray-300 rounded m-4 animate-pulse"></div>
