@@ -14,6 +14,7 @@ import PrimaryButton from "../global/buttons/PrimaryButton";
 import InputField from "../global/inputs/InputField";
 import PrimaryTextLabel from "../global/inputs/PrimaryTextLabel";
 import SecondaryTextLabel from "../global/inputs/SecondaryTextLabel";
+import NotifOnlyModal from "../global/notifications/feedbacks/NotifOnlyModal";
 
 export default function LogInCard() {
   const navigate = useNavigate();
@@ -22,23 +23,30 @@ export default function LogInCard() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const login = useAuthStore((state) => state.login);
+  const [isSuccessOpen, setSuccessOpen] = useState(false);
 
   const handleLogin = async () => {
     try {
+      setMessage("");
+
+      if (!email.includes("@gmail.com")) {
+        setMessage("Email must include @gmail.com");
+        return;
+      }
+
       const { data } = await axios.post("/api/login", {
         email,
         password,
       });
 
+      console.log("Login response:", data);
+
       if (data.token) {
-        login(data.token, data.user);
+        setSuccessOpen(true);
+        setTimeout(() => {
+          login(data.token, data.user, data.expiresIn);
+        }, 1000);
       }
-
-      alert("Logged In");
-
-      console.log(useAuthStore.getState().token);
-
-      navigate("/dashboard");
     } catch (err) {
       const error = err as AxiosError<{ message?: string }>;
       setMessage(error.response?.data?.message || "Login failed");
@@ -47,6 +55,20 @@ export default function LogInCard() {
 
   return (
     <div className="border-2 mt-16 rounded-3xl p-8 mx-[10%] bg-container flex flex-col items-center justify-center">
+      <div>
+        <NotifOnlyModal
+          isOpen={isSuccessOpen}
+          onClose={() => {
+            setSuccessOpen(false);
+            navigate("/dashboard");
+          }}
+          title="Login Successful"
+          message="Welcome back!"
+          icon={<div className="text-green-500">✓</div>}
+          autoClose={false}
+        />
+      </div>
+
       <PrimaryTextLabel content="Hello there" />
       <SecondaryTextLabel
         className="pl-[10%]"

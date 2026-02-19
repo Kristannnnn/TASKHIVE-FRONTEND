@@ -10,6 +10,7 @@ const TaskField: React.FC<TaskFieldProps> = ({
   onToggle,
   onEdit,
   onDelete,
+  hideEdit = false,
 }) => {
   return (
     <div className="relative w-full mt-6 flex items-center">
@@ -32,10 +33,12 @@ const TaskField: React.FC<TaskFieldProps> = ({
 
       {/* Icons */}
       <div className="absolute right-3 flex gap-3">
-        <FaEdit
-          className="cursor-pointer fill-secondary text-blue-500 hover:text-blue-700"
-          onClick={onEdit}
-        />
+        {!hideEdit && (
+          <FaEdit
+            className="cursor-pointer fill-secondary text-blue-500 hover:text-blue-700"
+            onClick={onEdit}
+          />
+        )}
 
         <FaTrash
           className="cursor-pointer fill-secondary text-red-500 hover:text-red-700"

@@ -24,6 +24,7 @@ export interface TaskFieldProps {
   onToggle?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
+  hideEdit?: boolean;
 }
 export interface PrimaryButtonProps {
   title: string;

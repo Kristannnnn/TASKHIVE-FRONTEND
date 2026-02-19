@@ -2,38 +2,52 @@ import PrimaryButton from "@/components/global/buttons/PrimaryButton";
 import InputField from "@/components/global/inputs/InputField";
 import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
+import NotifOnlyModal from "@/components/global/notifications/feedbacks/NotifOnlyModal";
 import axios from "axios";
 import { useState } from "react";
 import { MdMail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export default function ForgotPasswordCard() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [isSuccessOpen, setSuccessOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+    if (error) setError(""); // Clear error as user types
+  };
 
   const handleForgotPass = async () => {
     setError("");
-    setSuccess("");
 
     if (!email.trim()) {
       setError("Email is required");
       return;
     }
 
+    if (!email.includes("@")) {
+      setError("Email must include @");
+      return;
+    }
+
+    setLoading(true);
     try {
       await axios.post("/api/forgotpass", { email });
-      setSuccess("Reset link sent");
-      toast.success("Reset pass sent");
-      navigate("/login");
+      setSuccessOpen(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data?.message || "Failed to send reset link");
       } else {
         setError("Something went wrong");
       }
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -49,12 +63,28 @@ export default function ForgotPasswordCard() {
           type="email"
           placeholder="enter email"
           value={email}
-          onChange={(value) => setEmail(value)}
+          onChange={handleEmailChange}
+        />
+      </div>
+      <div>
+        <NotifOnlyModal
+          isOpen={isSuccessOpen}
+          onClose={() => {
+            setSuccessOpen(false);
+            navigate("/login");
+          }}
+          title="Reset Link Sent"
+          message="Check your email for the password reset link."
+          icon={<div className="text-green-500">✓</div>}
+          autoClose={false}
         />
       </div>
       {error && <p className="text-red-600 text-sm">{error}</p>}
-      {success && <p className="text-green-600 text-sm">{success}</p>}
-      <PrimaryButton title="Reset Password" onClick={handleForgotPass} />
+      <PrimaryButton
+        title={loading ? "Sending..." : "Reset Password"}
+        onClick={handleForgotPass}
+        disabled={loading}
+      />
     </div>
   );
 }

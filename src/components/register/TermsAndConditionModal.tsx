@@ -2,13 +2,39 @@ import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
 import { useState } from "react";
 
-export default function TermsAndCondition() {
+interface TermsAndConditionModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onAccept?: () => void;
+}
+
+export default function TermsAndConditionModal({
+  isOpen,
+  onClose,
+  onAccept,
+}: TermsAndConditionModalProps) {
   const [accepted, setAccepted] = useState(false);
 
+  if (!isOpen) return null;
+
   return (
-    <div className="bg-primary flex flex-col items-center h-screen justify-center">
-      {/* Container */}
-      <div className="border-2 mt-10 rounded-3xl p-6 w-[80%] max-w-4xl bg-container flex flex-col justify-center items-center backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <div className="relative z-50 w-[90%] max-w-4xl bg-container rounded-3xl p-6 shadow-xl animate-fadeIn">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
+        >
+          ✕
+        </button>
+
         <PrimaryTextLabel
           content="Terms and Conditions"
           className="text-4xl text-center mb-6"
@@ -35,15 +61,12 @@ export default function TermsAndCondition() {
               className="text-2xl mb-2"
             />
             <SecondaryTextLabel content="TaskHive is a web-based task management system that allows users to:" />
-            <ul className="list-disc ml-6 mt-2 space-y-1 font-normal text-[12px]">
+            <ul className="list-disc ml-6 mt-2 space-y-1 text-[14px]">
               <li>Create, edit, and delete tasks</li>
               <li>Organize tasks into categories</li>
               <li>Track task progress</li>
               <li>View analytics and archived tasks</li>
-              <li>
-                Access administrative management features (for authorized
-                admins)
-              </li>
+              <li>Access administrative management features</li>
             </ul>
             <SecondaryTextLabel
               content="The system may be updated, modified, or improved at any time without prior notice."
@@ -58,7 +81,7 @@ export default function TermsAndCondition() {
             />
             <SecondaryTextLabel content="To access certain features, users must register and create an account." />
             <SecondaryTextLabel content="You agree to:" className="mt-2" />
-            <ul className="list-disc ml-6 mt-2 space-y-1 font-normal text-[12px]">
+            <ul className="list-disc ml-6 mt-2 space-y-1 text-[14px]">
               <li>Provide accurate and complete information</li>
               <li>Maintain the confidentiality of your login credentials</li>
               <li>Be responsible for all activities under your account</li>
@@ -76,10 +99,10 @@ export default function TermsAndCondition() {
               className="text-2xl mb-2"
             />
             <SecondaryTextLabel content="Users agree not to:" />
-            <ul className="list-disc ml-6 mt-2 space-y-1 text-[12px] font-normal">
+            <ul className="list-disc ml-6 mt-2 space-y-1 text-[14px]">
               <li>Use the system for unlawful purposes</li>
-              <li>Attempt to gain unauthorized access to the system</li>
-              <li>Disrupt or interfere with system performance</li>
+              <li>Attempt to gain unauthorized access</li>
+              <li>Disrupt system performance</li>
               <li>Upload harmful or malicious content</li>
             </ul>
             <SecondaryTextLabel
@@ -106,9 +129,9 @@ export default function TermsAndCondition() {
               className="text-2xl mb-2"
             />
             <SecondaryTextLabel content="We reserve the right to:" />
-            <ul className="list-disc ml-6 mt-2 space-y-1 text-[12px] font-normal">
-              <li>Suspend or terminate user accounts</li>
-              <li>Restrict access to the system</li>
+            <ul className="list-disc ml-6 mt-2 space-y-1 text-[14px]">
+              <li>Suspend or terminate accounts</li>
+              <li>Restrict system access</li>
               <li>Modify or discontinue services</li>
             </ul>
             <SecondaryTextLabel
@@ -117,6 +140,8 @@ export default function TermsAndCondition() {
             />
           </div>
         </div>
+
+        {/* Footer */}
         <div className="mt-6 flex flex-col items-center gap-4">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
@@ -130,6 +155,10 @@ export default function TermsAndCondition() {
 
           <button
             disabled={!accepted}
+            onClick={() => {
+              if (onAccept) onAccept();
+              onClose();
+            }}
             className={`px-8 py-2 rounded-xl text-white transition-all duration-200 ${
               accepted
                 ? "bg-mainbutton hover:opacity-90"

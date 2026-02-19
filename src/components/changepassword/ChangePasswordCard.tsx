@@ -6,6 +6,7 @@ import axios, { isAxiosError } from "axios";
 import { useState } from "react";
 import { MdOutlineKey, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import NotifOnlyModal from "../global/notifications/feedbacks/NotifOnlyModal";
 interface changePassProps {
   userId: string;
 }
@@ -19,12 +20,11 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  const [isSuccessOpen, setSuccessOpen] = useState(false);
   const handleChangePassword = async () => {
     setError("");
-    setMessage("");
 
     if (!newPassword || !confirmPassword) {
       setError("All fields are required");
@@ -41,8 +41,10 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
         password: newPassword,
       });
 
-      setMessage("Password successfully updated");
-      setTimeout(() => navigate("/login"), 1500);
+      setSuccessOpen(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (err: unknown) {
       console.error(err);
       if (isAxiosError(err))
@@ -68,7 +70,8 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
           onChange={setNewPassword}
         />
         {showPassword ? (
-          <MdVisibility aria-label="showPasswordOn"
+          <MdVisibility
+            aria-label="showPasswordOn"
             className="absolute right-3 top-12 -translate-y-1/2 cursor-pointer"
             onClick={() => setShowPassword(false)}
           />
@@ -101,9 +104,21 @@ export default function ChangePasswordCard({ userId }: changePassProps) {
           />
         )}
       </div>
+      <div>
+        <NotifOnlyModal
+          isOpen={isSuccessOpen}
+          onClose={() => {
+            setSuccessOpen(false);
+            navigate("/login");
+          }}
+          title="Password Changed Successfully"
+          message="Your password has been updated."
+          icon={<div className="text-green-500">✓</div>}
+          autoClose={false}
+        />
+      </div>
 
       {error && <p className="text-red-600 text-sm mt-3">{error}</p>}
-      {message && <p className="text-green-600 text-sm mt-3">{message}</p>}
 
       <PrimaryButton title="Update Password" onClick={handleChangePassword} />
     </div>

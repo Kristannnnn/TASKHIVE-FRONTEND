@@ -3,6 +3,7 @@ import PrimaryTextLabel from "@/components/global/inputs/PrimaryTextLabel";
 import SecondaryTextLabel from "@/components/global/inputs/SecondaryTextLabel";
 import TaskField from "@/components/global/inputs/TaskField";
 import SuccessModal from "@/components/global/notifications/feedbacks/SuccessModal";
+import TaskSkeleton from "@/components/global/skeletons/TaskSkeleton";
 import AddTaskModal from "@/components/task/AddTaskModal";
 import { useAuthStore } from "@/stores/authStore";
 import axios from "axios";
@@ -30,6 +31,7 @@ const TaskPage = () => {
   const [modalMode, setModalMode] = useState<ModalMode>("add");
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!category) return;
@@ -50,11 +52,24 @@ const TaskPage = () => {
       } catch (error) {
         console.error("Error fetching tasks:", error);
         setTasks([]);
+      } finally {
+        setLoading(false);
       }
+      /** if want to try the skeleton loading use this 
+        finally {
+          setTimeout(()=>{
+          setLoading(false);
+        }, 1500)
+      }
+        */
     };
 
     fetchTasks();
   }, [category, token]);
+
+  if (loading) {
+    return <TaskSkeleton />;
+  }
 
   const handleToggle = async (taskId: string, currentStatus: string) => {
     const newStatus = currentStatus === "pending" ? "completed" : "pending";
@@ -160,7 +175,7 @@ const TaskPage = () => {
         className="text-center"
         content="Here’s your hive of tasks—time to get busy."
       />
-      <div className="border-2 mt-16 rounded-3xl p-8 mx-[10%] h-150 bg-container flex flex-col relative">
+      <div className="border-2 mt-5 rounded-3xl p-8 mx-[10%] h-150 bg-container flex flex-col h-[400px]">
         <div className="flex items-center justify-between w-full mb-6">
           <PrimaryTextLabel content={`${category?.toUpperCase()} TASK`} />
 

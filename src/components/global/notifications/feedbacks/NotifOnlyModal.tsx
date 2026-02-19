@@ -11,12 +11,11 @@ interface SuccessModalProps {
   autoCloseTime?: number;
 }
 
-const SuccessModal: React.FC<SuccessModalProps> = ({
+const NotifOnlyModal: React.FC<SuccessModalProps> = ({
   isOpen,
   onClose,
   title,
   message,
-  buttonText,
   icon,
   autoClose = false,
   autoCloseTime = 2000,
@@ -44,19 +43,10 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
         </div>
         <h2 className="text-xl font-semibold mb-2 font-cursive">{title}</h2>
 
-  
         <p className="text-gray-700 mb-6 font-cursive">{message}</p>
-
-
-        <button
-          onClick={onClose}
-          className="bg-secondary  font-cursive text-white px-6 py-2 rounded-md hover:bg-red-800 transition"
-        >
-          {buttonText}
-        </button>
       </div>
     </div>
   );
 };
 
-export default SuccessModal;
+export default NotifOnlyModal;
